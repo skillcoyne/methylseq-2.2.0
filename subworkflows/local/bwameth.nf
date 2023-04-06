@@ -134,6 +134,7 @@ workflow BWAMETH {
     PICARD_COLLECTHSMETRICS (
             SAMTOOLS_SORT.out.bam,
             params.fasta,
+	    params.fasta_index,
 	    params.bait_intervals,
 	    params.target_intervals
    )
