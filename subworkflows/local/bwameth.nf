@@ -130,7 +130,7 @@ workflow BWAMETH {
     } else {
         multiqc_files = Channel.empty()
     }
-¡
+
     PICARD_COLLECTHSMETRICS (
             SAMTOOLS_SORT.out.bam,
             params.fasta,
