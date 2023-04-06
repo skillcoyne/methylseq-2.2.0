@@ -12,6 +12,7 @@ include { BWAMETH_INDEX                                 } from '../../modules/nf
 include { BWAMETH_ALIGN                                 } from '../../modules/nf-core/bwameth/align/main'
 include { METHYLDACKEL_EXTRACT                          } from '../../modules/nf-core/methyldackel/extract/main'
 include { METHYLDACKEL_MBIAS                            } from '../../modules/nf-core/methyldackel/mbias/main'
+include { PICARD_COLLECTHSMETRICS 			} from '../../modules/nf-core/picard/collecthsmetrics/main'
 
 workflow BWAMETH {
     take:
@@ -129,6 +130,13 @@ workflow BWAMETH {
     } else {
         multiqc_files = Channel.empty()
     }
+¡
+    PICARD_COLLECTHSMETRICS (
+            SAMTOOLS_SORT.out.bam,
+            params.fasta,
+   )
+
+
 
     emit:
     bam                  = SAMTOOLS_SORT.out.bam  // channel: [ val(meta), [ bam ] ] ## sorted, non-deduplicated (raw) BAM from aligner
